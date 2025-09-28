@@ -1,12 +1,16 @@
-function Home(parametro){
+function Home(pokemones) {
     var root = document.getElementById("root");
-    for(var i = 0; i < pokemones.length; i++){
-        document.getElementById("root").innerHTML += `
-        <div class="card">
-            <img src="${pokemones[i].img}" alt="${pokemones[i].name}">
-            <h2>${pokemones[i].name}</h2>
-            <p>${pokemones[i].type}</p>
-        </div>
-        `
-    } 
+    root.innerHTML = ""; // limpiar antes de pintar
+    for (var i = 0; i < 9; i++) {
+        let id = i + 1;  // corregido
+        let nombre = pokemones[i].name;
+        root.innerHTML += `
+            <div class="un-pokemon" onclick="Detalle(${id})">
+                <p>${id} ${nombre}</p>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png" 
+                     width="auto" height="60" loading="lazy" alt="${nombre}">
+            </div>
+        `;
+    }
 }
+    console.log("Home cargado");
