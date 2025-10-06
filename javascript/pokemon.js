@@ -25,6 +25,8 @@ async function Detalle(h) {
             <p>Ataque Especial: ${data.stats[3].base_stat} | Defensa Especial: ${data.stats[4].base_stat}</p>
         </section>
     `;
-
+    <button onClick="toggleFavorito(${data.id}, '${data.name}')">
+        <span id="corazon-${data.id}">${esFavorito ? '❤️' : '🤍'}</span> Favorito
+    </button>
     root.innerHTML = detalle;
 }
