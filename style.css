@@ -1,3 +1,702 @@
-body{
-    background-color: skyblue;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #2c3e50;
+}
+
+/* NAVEGACIÓN */
+nav {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    padding: 20px;
+    padding-left: 100px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    border: 5px solid #fff;
+    position: relative;
+}
+
+nav::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(52, 152, 219, 0.5);
+}
+
+nav::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #fff 30%, transparent 31%);
+    border-radius: 50%;
+}
+
+nav button {
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+nav button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #e67e22, #d35400);
+}
+
+nav button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ROOT CONTAINER */
+#root {
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    max-width: 1400px;
+    margin: 0 auto;
+    border: 8px solid #fff;
+}
+
+/* BUSCADOR */
+.c-buscador {
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 18px;
+    border: 4px solid #3498db;
+    border-radius: 50px;
+    margin-bottom: 25px;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.c-buscador:focus {
+    outline: none;
+    border-color: #e74c3c;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+    transform: scale(1.02);
+}
+
+/* BOTONES DE FILTRO */
+#root > div:nth-child(2) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+#root > div:nth-child(2) button {
+    padding: 10px 20px;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(145deg, #ecf0f1, #bdc3c7);
+    color: #2c3e50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#root > div:nth-child(2) button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores específicos por tipo */
+#root > div:nth-child(2) button:nth-child(1) { background: linear-gradient(145deg, #A8A878, #8a8a59); } /* normal */
+#root > div:nth-child(2) button:nth-child(2) { background: linear-gradient(145deg, #C03028, #9d2721); } /* fighting */
+#root > div:nth-child(2) button:nth-child(3) { background: linear-gradient(145deg, #A890F0, #8a73d6); } /* flying */
+#root > div:nth-child(2) button:nth-child(4) { background: linear-gradient(145deg, #A040A0, #803380); } /* poison */
+#root > div:nth-child(2) button:nth-child(5) { background: linear-gradient(145deg, #E0C068, #b89e54); } /* ground */
+#root > div:nth-child(2) button:nth-child(6) { background: linear-gradient(145deg, #B8A038, #94802d); } /* rock */
+#root > div:nth-child(2) button:nth-child(7) { background: linear-gradient(145deg, #A8B820, #879619); } /* bug */
+#root > div:nth-child(2) button:nth-child(8) { background: linear-gradient(145deg, #705898, #594570); } /* ghost */
+#root > div:nth-child(2) button:nth-child(9) { background: linear-gradient(145deg, #B8B8D0, #9595a8); } /* steel */
+#root > div:nth-child(2) button:nth-child(10) { background: linear-gradient(145deg, #F08030, #c96626); } /* fire */
+#root > div:nth-child(2) button:nth-child(11) { background: linear-gradient(145deg, #6890F0, #5474c7); } /* water */
+#root > div:nth-child(2) button:nth-child(12) { background: linear-gradient(145deg, #78C850, #619f3f); } /* grass */
+#root > div:nth-child(2) button:nth-child(13) { background: linear-gradient(145deg, #F8D030, #c7a626); } /* electric */
+#root > div:nth-child(2) button:nth-child(14) { background: linear-gradient(145deg, #F85888, #c7466e); } /* psychic */
+#root > div:nth-child(2) button:nth-child(15) { background: linear-gradient(145deg, #98D8D8, #7ab0b0); } /* ice */
+#root > div:nth-child(2) button:nth-child(16) { background: linear-gradient(145deg, #7038F8, #582dc7); } /* dragon */
+#root > div:nth-child(2) button:nth-child(17) { background: linear-gradient(145deg, #705848, #584539); } /* dark */
+#root > div:nth-child(2) button:nth-child(18) { background: linear-gradient(145deg, #EE99AC, #d17a8a); } /* fairy */
+
+/* LISTA DE POKÉMON */
+.c-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.c-lista-pokemon, .c-un_aleatorio {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid #ecf0f1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.c-lista-pokemon:hover, .c-un_aleatorio:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-color: #3498db;
+}
+
+.c-lista-pokemon img, .c-un_aleatorio img {
+    width: 100%;
+    height: auto;
+    max-width: 120px;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+}
+
+.c-lista-pokemon:hover img, .c-un_aleatorio:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.c-lista-pokemon p, .c-un_aleatorio p {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #2c3e50;
+    text-transform: capitalize;
+}
+
+/* CAPTURADOS */
+.c-unpoke {
+    background: linear-gradient(145deg, #95a5a6, #7f8c8d);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    border: 3px solid #bdc3c7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    transition: all 0.3s ease;
+}
+
+.c-mios-pokemon {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa) !important;
+    border-color: #27ae60 !important;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+.c-mios-pokemon:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4);
+}
+
+.c-unpoke img {
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* DETALLE DE POKÉMON */
+.c-detalle {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border: 5px solid #3498db;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.c-detalle img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.c-detalle p {
+    font-size: 18px;
+    margin: 12px 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.c-detalle p:first-of-type {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #e74c3c;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.c-detalle span {
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 15px;
+    margin: 0 5px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.c-detalle button {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    margin-top: 25px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.c-detalle button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.c-detalle button span {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+/* CONTADOR */
+#contador {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+/* BOTÓN 4 NUEVOS */
+#root > button {
+    background: linear-gradient(145deg, #27ae60, #229954);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    margin: 20px 0;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#root > button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(39, 174, 96, 0.4);
+    background: linear-gradient(145deg, #229954, #1e8449);
+}
+
+#root > button:active {
+    transform: translateY(0) scale(1);
+}
+
+/* PANTALLA INFORMATIVA */
+.c-informativa {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 30px;
+    padding: 50px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.c-informativa::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.c-info-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.c-info-header h1 {
+    font-size: 72px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ffeb3b, #ffc107, #ff9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.c-subtitle {
+    font-size: 24px;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+.c-info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.c-info-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.c-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.c-info-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.c-info-card:nth-child(2) .c-info-icon {
+    animation-delay: 0.2s;
+}
+
+.c-info-card:nth-child(3) .c-info-icon {
+    animation-delay: 0.4s;
+}
+
+.c-info-card:nth-child(4) .c-info-icon {
+    animation-delay: 0.6s;
+}
+
+.c-info-card h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.c-info-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.c-info-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.c-info-footer p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.c-info-footer strong {
+    color: #ffeb3b;
+    font-size: 22px;
+}
+
+.c-info-api {
+    margin-top: 15px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.c-info-api a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.c-info-api a:hover {
+    color: #ffc107;
+    text-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+}
+
+.c-pikachu {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 80px;
+    animation: float 3s ease-in-out infinite;
+    z-index: 3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    nav {
+        padding: 15px;
+        padding-left: 70px;
+        border-radius: 20px;
+    }
+
+    nav::before {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        left: 15px;
+    }
+
+    nav::after {
+        top: 25px;
+        left: 28px;
+        width: 15px;
+        height: 15px;
+    }
+
+    nav button {
+        padding: 10px 18px;
+        font-size: 14px;
+        margin: 3px;
+    }
+
+    #root {
+        padding: 20px;
+        border-radius: 20px;
+        border: 5px solid #fff;
+    }
+
+    .c-buscador {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .c-lista {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+    }
+
+    .c-lista-pokemon, .c-un_aleatorio {
+        padding: 15px;
+    }
+
+    .c-detalle {
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    .c-detalle img {
+        max-width: 200px;
+    }
+
+    .c-detalle p:first-of-type {
+        font-size: 26px;
+    }
+
+    .c-detalle p {
+        font-size: 16px;
+    }
+
+    #contador {
+        font-size: 22px;
+        padding: 12px 25px;
+    }
+
+    #root > div:nth-child(2) button {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    #root > button {
+        font-size: 16px;
+        padding: 15px 35px;
+    }
+
+    .c-informativa {
+        padding: 30px 20px;
+    }
+
+    .c-info-header h1 {
+        font-size: 48px;
+    }
+
+    .c-subtitle {
+        font-size: 18px;
+    }
+
+    .c-info-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .c-info-card {
+        padding: 25px;
+    }
+
+    .c-info-icon {
+        font-size: 48px;
+    }
+
+    .c-pikachu {
+        font-size: 50px;
+        bottom: 10px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .c-lista {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+
+    .c-lista-pokemon, .c-un_aleatorio {
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    .c-lista-pokemon img, .c-un_aleatorio img {
+        max-width: 80px;
+    }
+
+    nav button {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    .c-detalle {
+        padding: 20px;
+    }
+
+    .c-detalle img {
+        max-width: 180px;
+    }
+
+    #root > button {
+        font-size: 16px;
+        padding: 15px 35px;
+    }
+
+    .c-informativa {
+        padding: 25px 15px;
+    }
+
+    .c-pokemon-logo {
+        max-width: 400px;
+    }
+
+    .c-presents-logo {
+        max-width: 280px;
+    }
+
+    .c-info-header h1 {
+        font-size: 36px;
+        letter-spacing: 2px;
+    }
+
+    .c-subtitle {
+        font-size: 16px;
+    }
+
+    .c-info-card h2 {
+        font-size: 20px;
+    }
+
+    .c-info-card p {
+        font-size: 14px;
+    }
+
+    .c-pikachu {
+        font-size: 40px;
+    }
 }

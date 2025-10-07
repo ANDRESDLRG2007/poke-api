@@ -3,7 +3,11 @@ async function Detalle(h) {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${h}`);
     const data = await res.json();
 
-    // Construir tipos (siempre existen en la API)
+    // Revisar si este Pokémon ya está en favoritos
+    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    let esFavorito = favoritos.some(poke => poke.name === data.name);
+
+    // Construir tipos
     let tipos = data.types.map(t => t.type.name).join(", ");
 
     // Plantilla
@@ -23,10 +27,11 @@ async function Detalle(h) {
             <p>Velocidad: ${data.stats[5].base_stat}</p>
             <p>Ataque: ${data.stats[1].base_stat} | Defensa: ${data.stats[2].base_stat}</p>
             <p>Ataque Especial: ${data.stats[3].base_stat} | Defensa Especial: ${data.stats[4].base_stat}</p>
+            <button onClick="toggleFavorito(${data.id}, '${data.name}')">
+                <span id="corazon-${data.id}">${esFavorito ? '❤️' : '🤍'}</span> Favorito
+            </button>
         </section>
     `;
-    <button onClick="toggleFavorito(${data.id}, '${data.name}')">
-        <span id="corazon-${data.id}">${esFavorito ? '❤️' : '🤍'}</span> Favorito
-    </button>
+    
     root.innerHTML = detalle;
 }
